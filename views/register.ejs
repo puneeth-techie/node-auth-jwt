@@ -1,0 +1,17 @@
+<%- include('partials/header'); -%>
+<form action="/auth/register" method="POST">
+    <h2>Sign Up</h2>
+    <label for="name">Username</label>
+    <input type="text" name="name" required placeholder="Username"/>
+    <div class="name error"></div>
+    <label for="email">Email</label>
+    <input type="text" name="email" required placeholder="Email"/>
+    <div class="email error"></div>
+    <label for="password">Password</label>
+    <input type="password" name="password" required placeholder="Password"/>
+    <div class="password error"></div>
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" name="confirmPassword" required placeholder="Confirm Password"/>
+    <button>Sign Up</button>
+</form>
+<%- include('partials/footer'); -%>
