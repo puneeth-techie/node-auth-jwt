@@ -1,3 +1,4 @@
+const { checkUser } = require('../middlewares/authCheck');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const express = require('express');
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 
 //routes
+app.get('*', checkUser);
 app.use('/', home);
 app.use('/smoothies', smoothies);
 app.use('/auth', auth);

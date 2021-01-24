@@ -25,7 +25,7 @@ exports.register_post = (req, res, next) => {
                         user.save().then(user => {
                             const token = user.generateAuthToken();
                             res.cookie('jwt', token, { httpOnly: true, maxAge: 10000 * 60 * 60 * 3});
-                            res.status(200).send(user);
+                            res.status(200).redirect('/auth/login');
                         }).catch(err => res.status(400).send(err));
                     }
                 })
@@ -45,13 +45,10 @@ exports.login_post = (req, res, next) => {
         res.cookie('jwt', token, { httpOnly: true, maxAge: 10000 * 60 * 60 * 3});
         bcrypt.compare(password, user.password, (err, isMatch) => {
             console.log(isMatch);
-            if(isMatch) {
+            if(isMatch)
                 res.status(200).render('dashboard', {user: user});
-            }else{
-                res.status(400).redirect('/auth/login');
-            }
         })
-    }).catch(err => {res.status(400).send(err)});
+    }).catch(err => {res.status(400).redirect('/auth/login')});
 }
 
 exports.logout = (req, res) => {

@@ -9,7 +9,13 @@
   <nav>
     <h1><a href="/">Baby Smoothies</a></h1>
     <ul>
-      <li><a href="/auth/login">Sign in</a></li>
-      <li><a href="/auth/register">Sign Up</a></li>
+        <% if(user) {%>
+          <li>Welcome, <%= user.email %></li>
+          <li><a href="/auth/logout">Logout</a></li>
+        <%} else {%>  
+          <li><a href="/auth/login">Sign in</a></li>
+          <li><a href="/auth/register">Sign Up</a></li>
+          <!-- <li><a href="/auth/logout">Logout</a></li> -->
+        <%}%>
     </ul>
   </nav>
